@@ -1,0 +1,6 @@
+spring:
+  activemq:
+    broker-url: tcp://172.168.1.150:61616
+    pool:
+      enabled: true
+      max-connections: 5
