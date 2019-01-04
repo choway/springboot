@@ -29,7 +29,8 @@ public class JmsTemplateTest {
 		jmsTemplate.send("queue.test", new MessageCreator() {
 			@Override
 			public Message createMessage(Session session) throws JMSException {
-				return session.createTextMessage("test msg : " + new Random().nextInt(100));
+				TextMessage message = session.createTextMessage("test msg : " + new Random().nextInt(100));
+				return message;
 			}
 		});
 	}
