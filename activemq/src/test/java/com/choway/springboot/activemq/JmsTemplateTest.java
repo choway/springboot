@@ -30,6 +30,7 @@ public class JmsTemplateTest {
 			@Override
 			public Message createMessage(Session session) throws JMSException {
 				TextMessage message = session.createTextMessage("test msg : " + new Random().nextInt(100));
+				message.setStringProperty("username", "test");
 				return message;
 			}
 		});
