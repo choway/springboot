@@ -9,10 +9,7 @@ import org.springframework.jms.core.MessageCreator;
 import org.springframework.jms.support.JmsUtils;
 import org.springframework.test.context.junit4.SpringRunner;
 
-import javax.jms.JMSException;
-import javax.jms.Message;
-import javax.jms.Session;
-import javax.jms.TextMessage;
+import javax.jms.*;
 import java.util.Random;
 
 
@@ -23,22 +20,27 @@ public class JmsTemplateTest {
 	@Autowired
 	private JmsTemplate jmsTemplate;
 
+	@Autowired
+	private Queue queue;
+
 
 	@Test
 	public void sendMsg() {
-		jmsTemplate.send("queue.test", new MessageCreator() {
+		jmsTemplate.send(queue, new MessageCreator() {
 			@Override
 			public Message createMessage(Session session) throws JMSException {
 				TextMessage message = session.createTextMessage("test msg : " + new Random().nextInt(100));
 				return message;
 			}
 		});
+
+		jmsTemplate.convertAndSend(queue, "test msg : " + new Random().nextInt(100));
 	}
 
 	@Test
 	public void receiveMsg() {
 		try {
-			TextMessage message = (TextMessage) jmsTemplate.receive("queue.test");
+			TextMessage message = (TextMessage) jmsTemplate.receive(queue);
 			String text = message.getText();
 			System.out.println(text);
 		} catch (JMSException e) {
