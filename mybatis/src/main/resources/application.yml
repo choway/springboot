@@ -4,7 +4,14 @@ spring:
     url: jdbc:mysql://172.168.1.150:3306/testdb?useUnicode=true&characterEncoding=utf8&useSSL=false
     username: root
     password: test1234
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 5
 
 mybatis:
   type-aliases-package: com.choway.springboot.mybatis.model
   mapper-locations: classpath:mappings/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
