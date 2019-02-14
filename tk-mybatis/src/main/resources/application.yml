@@ -13,6 +13,7 @@ spring:
 mybatis:
   type-aliases-package: com.choway.springboot.tk.mybatis.model
   configuration:
+    cache-enabled: true
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
 
 mapper:
