@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: elasticsearch
+  data:
+    elasticsearch:
+      cluster-name: my-es
+      cluster-nodes: 47.97.180.196:9300
+      repositories:
+        enabled: true
