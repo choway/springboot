@@ -53,6 +53,11 @@ public class JwtUtil {
 		return token;
 	}
 
+	/**
+	 * 解析 token
+	 * @param token
+	 * @return
+	 */
 	public static Claims parseToken(String token) {
 		Claims claims = Jwts.parser().setSigningKey(secret).parseClaimsJws(token).getBody();
 		return claims;
